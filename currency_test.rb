@@ -15,5 +15,11 @@ class TestCurrency < Minitest::Test
     assert_equal true, colombian_peso == other_colombian_peso
   end
 
+  def test_should_add_with_same_currency_code
+    colombian_peso = Currency.new(200, "COP")
+    other_colombian_peso = Currency.new(300, "COP")
+
+    assert_equal 500, colombian_peso.amount + other_colombian_peso.amount
+  end
 
 end
