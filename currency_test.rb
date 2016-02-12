@@ -29,4 +29,13 @@ class TestCurrency < Minitest::Test
     assert_equal 300, colombian_peso.amount - other_colombian_peso.amount
   end
 
+  def test_adding_subtracting_with_different_currency_code
+    colombian_peso = Currency.new(500, "COP")
+    mexican_peso = Currency.new(300, "MXN")
+
+    assert DifferentCurrencyCodeError, colombian_peso.amount - mexican_peso.amount
+    assert DifferentCurrencyCodeError, mexican_peso.amount + mexican_peso.amount
+  end
+  
+
 end
