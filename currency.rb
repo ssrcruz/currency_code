@@ -12,7 +12,7 @@ attr_reader :amount, :currency_code ## attr_reader makes a method
     self.currency_code == other.currency_code ## the object receiving the message
   end
 
-  def +(other)
+  def +(other) ## ruby operator overloading, allowing you to define how operators will work.
     if self.currency_code != other.currency_code
       self.amount + other.amount
       raise DifferentCurrencyCodeError, "Error"

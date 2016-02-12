@@ -36,6 +36,13 @@ class TestCurrency < Minitest::Test
     assert DifferentCurrencyCodeError, colombian_peso.amount - mexican_peso.amount
     assert DifferentCurrencyCodeError, mexican_peso.amount + mexican_peso.amount
   end
-  
+
+  def test_should_multiply_by_fixnum_or_float
+    colombian_peso = Currency.new(50, "COP")
+    other_colombian_peso = Currency.new(60, "COP")
+
+    assert_equal 3000, colombian_peso.amount * other_colombian_peso.amount
+  end
+
 
 end
