@@ -2,6 +2,7 @@ require "./currency.rb"
 require "minitest/autorun"
 require "minitest/pride"
 
+
 class TestCurrency < Minitest::Test
 
   def test_create_amount_and_currency_code
@@ -33,15 +34,16 @@ class TestCurrency < Minitest::Test
     colombian_peso = Currency.new(500, "COP")
     mexican_peso = Currency.new(300, "MXN")
 
-    assert DifferentCurrencyCodeError, colombian_peso.amount - mexican_peso.amount
-    assert DifferentCurrencyCodeError, mexican_peso.amount + mexican_peso.amount
+    assert_raises(DifferentCurrencyCodeError) {colombian_peso - mexican_peso}
+    assert_raises(DifferentCurrencyCodeError) {mexican_peso + colombian_peso}
   end
 
   def test_should_multiply_by_fixnum_or_float
     colombian_peso = Currency.new(50, "COP")
     other_colombian_peso = Currency.new(60, "COP")
 
-    assert_equal 3000, colombian_peso.amount * other_colombian_peso.amount
+    assert_equal 500, colombian_peso.amount * 10
+    assert_equal 330, other_colombian_peso.amount * 5.5
   end
 
 
